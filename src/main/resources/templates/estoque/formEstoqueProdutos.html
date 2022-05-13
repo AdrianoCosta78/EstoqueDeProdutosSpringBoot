@@ -1,0 +1,65 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Estoque de Produtos</title>
+  </head>
+  <body>
+    <div class="container">
+        <div class="row">
+            <h1>Estoque de Produtos</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Quantidade</th>
+                             <th scope="col">Un.</th>
+                            <th scope="col">Preço</th>
+                            <th scope="col">Data da Entrada</th>
+                            <th scope="col">Ultima Atualização</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                      </thead>
+                    <tbody>
+                    	                   
+                    
+                        <tr th:each="produtosModel: ${estoqueProdutos} ">
+                        	<th class="col-1" scope="row" th:text="${produtosModel.getId}">Id</th>
+                            <td class="col-4" th:text="${produtosModel.NomeProduto}">Nome do Produto</td>
+                            <td class="col-2" th:text="${produtosModel.quantidadeProduto}">Quantidade</td>
+                            <td class="col-2" th:text="${produtosModel.medidasModel}">Un.</td>
+                            <td class="col-2" th:text="${produtosModel.precoProduto}">Preço</td>
+                            <td class="col-2" th:text="${produtosModel.dataCriacao}">Data de Entrada</td>
+                            <td class="col-2" th:text="${produtosModel.dataAtualizacao}">Data da Atualização</td>
+                            
+               		        <td class="col-1"><a th:href="@{/editarProduto/{id}(id=${produtosModel.id})}">Editar</a></td>
+                          
+                            <td class="col-1"><a th:href="@{excluirProduto/{id}(id=${produtosModel.getId})}">Excluir</a></td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <a href="/cadastrarProduto">Novo Produto</a>
+            <a href="/cadastrarFornecedor">Novo Fornecedor</a>
+        </div>
+    </div>
+
+
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html> 
